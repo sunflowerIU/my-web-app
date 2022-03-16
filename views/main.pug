@@ -1,0 +1,75 @@
+
+extends base
+
+
+
+//- mixins for products
+mixin productCard(product)
+    .col
+        .card.shadow-sm
+            img(src=`img/product/${product.imageCover}`, width='100%', height='100%', alt='')
+            .card-body
+                h5.card-title=product.name
+                p.float-end=`Area: ${product.landArea} dhur`
+                p=`Location: ${product.location}`
+                if product.type==='house'
+                    p.float-end=`Floor: ${product.floors}`
+                    p=`Bedroom: ${product.bedroom}`
+                    p.float-end=`Road width: ${product.roadWidth}m`
+                    p=`Plinth Area: ${product.plinthArea}sq.m`
+                p.card-text=product.description
+                    
+                a.btn.btn-dark(href='#') Details
+
+
+
+block content    
+    hr.featurette-divider
+    main
+        .album.py-5.bg-light
+            .container
+                .row.row-cols-1.row-cols-sm-2.row-cols-md-3.g-3
+                    each product in products 
+                        +productCard(product)
+
+        nav(aria-label='')
+            ul.pagination.justify-content-center
+                +paginate(totalPages,currentPage)
+                //- li.page-item
+                //-     a.page-link(href='') Previous
+                //- li.page-item
+                //-     a.page-link(href='') 1
+                //- li.page-item
+                //-     a.page-link(href='') 2
+                //- li.page-item
+                //-     a.page-link(href='') 3
+                //- li.page-item
+                //-     a.page-link(href='') Next
+    hr.featurette-divider
+
+
+mixin paginate(totalPages,currentPage = 1)
+    //- let currentPage = 1;
+    if totalPages > 1
+
+        if currentPage === 1
+            li.page-item
+                a.page-link(href='' data-next-page=currentPage+1 class='nextBtn') Next
+            
+        
+        if currentPage > 1 && currentPage < totalPages
+            li.page-item
+                a.page-link(href='' data-previous-page=currentPage-1 class='previousBtn') Previous
+            li.page-item
+                a.page-link(href='' data-next-page=currentPage+1 class='nextBtn') Next
+            
+        
+        if currentPage === totalPages
+            li.page-item
+                a.page-link(href='' data-previous-page=currentPage-1 class='previousBtn') Previous
+
+        
+   
+    
+
+    //- currentPage+=1

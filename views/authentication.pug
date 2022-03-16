@@ -1,0 +1,32 @@
+html
+  head
+  body
+    main.box
+      .container.signup-container(id='')
+        .form-container.sign-up-container
+          form(action='#')
+            h1 Create Account
+            input(type='text', placeholder='Name')
+            input(type='email', placeholder='Email')
+            input(type='text', placeholder='Secret key')
+            input(type='password', placeholder='Password')
+            input(type='password', placeholder='Password confirm')
+            button.btn.btn-dark Sign Up
+        .form-container.sign-in-container
+          form(action='#')
+            h1 Sign in
+            span or use your account
+            input(type='email', placeholder='Email')
+            input(type='password', placeholder='Password')
+            a.link-color(href='#') Forgot your password?
+            button.btn.btn-dark Sign In
+        .overlay-container
+          .overlay
+            .overlay-panel.overlay-left
+              h1 Welcome Back!
+              p To keep connected with us please login with your personal info
+              button#signIn.btn.btn-dark Sign In
+            .overlay-panel.overlay-right
+              h1 Hello, Friend!
+              p Enter your personal details and start journey with us
+              button#signUp.btn.btn-dark Sign Up

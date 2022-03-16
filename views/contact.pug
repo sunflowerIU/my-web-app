@@ -1,0 +1,56 @@
+html
+  head
+  body
+    main
+      .container-form
+        span.big-circle
+        img.square(src='images/shape.png', alt='')
+        .form
+          .contact-info
+            h3.title Let&apos;s get in touch
+            p.text
+              | Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe
+              | dolorum adipisci recusandae praesentium dicta!
+            .info
+              .information
+                img.icon(src='images/location.png', alt='')
+                p 92 Cherry Drive Uniondale, NY 11553
+              .information
+                img.icon(src='images/email.png', alt='')
+                p lorem@ipsum.com
+              .information
+                img.icon(src='images/phone.png', alt='')
+                p 123-456-789
+            .social-media
+              p Connect with us :
+              .social-icons
+                a(href='#')
+                  i.fab.fa-facebook-f
+                a(href='#')
+                  i.fab.fa-twitter
+                a(href='#')
+                  i.fab.fa-instagram
+                a(href='#')
+                  i.fab.fa-linkedin-in
+          .contact-form
+            span.circle.one
+            span.circle.two
+            form(action='index.html', autocomplete='off')
+              h3.title Contact us
+              .input-container
+                input.input(type='text', name='name')
+                label(for='') Username
+                span Username
+              .input-container
+                input.input(type='email', name='email')
+                label(for='') Email
+                span Email
+              .input-container
+                input.input(type='tel', name='phone')
+                label(for='') Phone
+                span Phone
+              .input-container.textarea
+                textarea.input(name='message')
+                label(for='') Message
+                span Message
+              input.btn-contact(type='submit', value='Send')

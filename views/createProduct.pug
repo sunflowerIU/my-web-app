@@ -1,0 +1,42 @@
+html
+  head
+  body
+    main.box
+      .container.create-product
+        .col-lg-8.col-lg-offset-2.col-md-8.col-md-offset-2.col-sm-12.col-xs-12.edit_information
+          form(action='', method='POST')
+            h3.text-center Create a new Property
+            .row
+              .col-lg-12.col-md-12.col-sm-12.col-xs-12
+                .form-group
+                  label.profile_details_text Name:
+                  input.form-control(type='text', name='property-name', value='', required='')
+              .col-lg-12.col-md-12.col-sm-12.col-xs-12
+                .form-group
+                  label.profile_details_text Description: 
+                  input.form-control(type='text', name='Property-description', value='', required='')
+            .row
+              .col-lg-12.col-md-12.col-sm-12.col-xs-12
+                .form-group
+                  label.profile_details_text Cover Image:
+                  input#cover-image-upload.hidden(type='file', onchange='')
+            .row
+              .col-lg-12.col-md-12.col-sm-12.col-xs-12
+                .form-group
+                  label.profile_details_text Images:
+                  input#images-upload.hidden(type='file', onchange='', multiple='')
+            .row
+              .col-lg-12.col-md-12.col-sm-12.col-xs-12
+                .form-group
+                  label.profile_details_text Location:
+                  input.form-control(type='text', name='location', value='', required='')
+            .row.type-div
+              .col-lg-12.col-md-12.col-sm-12.col-xs-12
+                .form-group
+                  label.profile_details_text Type:
+                  select.form-select.form-select-sm.select-type(aria-label='.form-select-sm example', onchange='showOtherForm()')
+                    option(selected='') Open this select menu
+                    option(value='house') house
+                    option(value='land') land
+            .other
+           

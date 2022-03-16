@@ -1,0 +1,51 @@
+html
+    head
+    body
+        main.box
+            .container
+                .profile-pic
+                    img#profile-image1(alt='User Pic', src='images/iu2.jpg', height='200', width='200')
+                    input#profile-image-upload.hidden(type='file', onchange='')
+                    div(style='color:#999;')  
+                .col-lg-8.col-lg-offset-2.col-md-8.col-md-offset-2.col-sm-12.col-xs-12.edit_information
+                    form(action='', method='POST')
+                        h3.text-center Edit Personal Information
+                        .row
+                            .col-lg-12.col-md-12.col-sm-12.col-xs-12
+                                .form-group
+                                    label.profile_details_text Current password:
+                                    input.form-control(type='password', name='current_password', value='', required='')
+                            .col-lg-12.col-md-12.col-sm-12.col-xs-12
+                                .form-group
+                                    label.profile_details_text New password: 
+                                    input.form-control(type='password', name='new_password', value='', required='')
+                        .row
+                            .col-lg-12.col-md-12.col-sm-12.col-xs-12
+                                .form-group
+                                    label.profile_details_text Password confirm:
+                                    input.form-control(type='password', name='password_confirm', value='', required='')
+                        .row
+                            .col-lg-12.col-md-12.col-sm-12.col-xs-12.submit
+                                .form-group
+                                    input.btn.btn-dark(type='submit', value='Submit')
+                .col-lg-8.col-lg-offset-2.col-md-8.col-md-offset-2.col-sm-12.col-xs-12.edit_information
+                    form(action='', method='POST')
+                        h3.text-center Change your password
+                        .row
+                            .col-lg-6.col-md-6.col-sm-6.col-xs-12
+                                .form-group
+                                    label.profile_details_text First Name:
+                                    input.form-control(type='text', name='first_name', value='')
+                            .col-lg-6.col-md-6.col-sm-6.col-xs-12
+                                .form-group
+                                    label.profile_details_text Last Name: 
+                                    input.form-control(type='text', name='last_name', value='')
+                        .row
+                            .col-lg-12.col-md-12.col-sm-12.col-xs-12
+                                .form-group
+                                    label.profile_details_text Email Address:
+                                    input.form-control(type='email', name='email', value='')
+                        .row
+                            .col-lg-12.col-md-12.col-sm-12.col-xs-12.submit
+                                .form-group
+                                    input.btn.btn-dark(type='submit', value='Submit')

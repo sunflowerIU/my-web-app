@@ -1,0 +1,31 @@
+//- navbar
+header
+    .bg
+        nav.navbar.navbar-expand-md.navbar-dark.fixed-top.bg-dark
+            .container-fluid
+                a.navbar-brand(href='#') Real-estate
+                button.navbar-toggler(type='button', data-bs-toggle='collapse', data-bs-target='#navbarCollapse', aria-controls='navbarCollapse', aria-expanded='false', aria-label='Toggle navigation')
+                    span.navbar-toggler-icon
+                #navbarCollapse.collapse.navbar-collapse.justify-content-end
+                    ul.navbar-nav.justify-content-end
+                        li.nav-item
+                            a.nav-link(href='contact.html') Contact us
+                        // if you dont have account
+                        li.nav-item
+                            a.nav-link(href='#') Details
+                        li.nav-item
+                            button.btn.btn-outline-primary(type='button') Login
+                        li.nav-item
+                            button.btn.btn-primary(type='button') Sign up
+                        // if you have account
+                        //
+                            <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Username
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="#">profile</a></li>
+                            <li><a class="dropdown-item" href="#">Log out</a></li>
+                            </ul>
+                            </li>
