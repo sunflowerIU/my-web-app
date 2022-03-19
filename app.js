@@ -15,6 +15,7 @@ const path = require('path')
 const productRoutes = require('./routes/productRoutes')
 const userRoutes = require('./routes/userRoutes')
 const viewRoutes = require('./routes/viewRoute')
+const contactRoute = require('./routes/contactRoute')
 
 
 ////set view engine
@@ -59,6 +60,7 @@ app.use(xss())
 ////assigning routers for api
 app.use('/api/product', productRoutes)
 app.use('/api/user', userRoutes)
+app.use('/api/contact-us', contactRoute)
 
 //assgining router for views
 app.use('/',viewRoutes)

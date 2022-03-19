@@ -10,15 +10,8 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Please specify your name!'],
         trim: true,
-        minlength: [4, 'Your name should have minimum 5 character!!!']
-
-    },
-    userName: {
-        type: String,
-        required: [true, 'Please specify your username!'],
-        trim: true,
-        minlength: [4, 'Your should have minimum 5 character!!!'],
-        unique: [true, 'Following username has alreay been taken, choose another one!!']
+        minlength: [4, 'Your name should have minimum 4 character!!!'],
+        unique:[true,'This name is already taken.']
 
     },
     photo: {
@@ -29,7 +22,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Email is required'],
         validate: [validator.isEmail, 'Please provide valid email.'],
-        unique: [true, 'Following email has alreay been taken']
+        unique: [true, 'This email has already been taken']
     },
     password: {
         type: String,
@@ -86,11 +79,12 @@ userSchema.pre('save', function (next) {
     // if this doc is new then only check for secret key to save
     if (this.isNew) {
         //if secret key doesnot match then send error
-        const SECRET_KEY_FOR_SIGNUP = '743777217A25432A462'
+        const SECRET_KEY_FOR_SIGNUP = 'my-secret-key'
         if (this.secretKey !== SECRET_KEY_FOR_SIGNUP) {
-            return next(new AppError('Invalid secret key, you dont\'t have permission to signin!!!', 400))
+            return next(new AppError('Invalid secret key, you don\'t have permission to signin!!!', 400))
         }
         //if secret key is correct then hash secret key also
+        this.secretKey = crypto.createHash('md5').update(this.secretKey).digest('hex')
         next()
     }
     next()

@@ -12,14 +12,15 @@ mixin productCard(product)
                 h5.card-title=product.name
                 p.float-end=`Area: ${product.landArea} dhur`
                 p=`Location: ${product.location}`
+                p=`Road width: ${product.roadWidth}m`
+
                 if product.type==='house'
-                    p.float-end=`Floor: ${product.floors}`
-                    p=`Bedroom: ${product.bedroom}`
-                    p.float-end=`Road width: ${product.roadWidth}m`
-                    p=`Plinth Area: ${product.plinthArea}sq.m`
+                    p.float-end=`Bedroom: ${product.bedroom}`
+                    p=`Floor: ${product.floors}`
+                    p=`Plinth Area: ${product.plinthArea} sq ft`
                 p.card-text=product.description
                     
-                a.btn.btn-dark(href='#') Details
+                a.btn.btn-dark(href=`/product/${product.slug}`) Details
 
 
 

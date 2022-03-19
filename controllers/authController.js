@@ -9,6 +9,7 @@ const Email = require('../utilities/email')
 const crypto = require('crypto')
 
 
+
 //create jwt token
 const createAndSendToken = (user, req, res, msg) => {
     const id = user._id
@@ -43,7 +44,6 @@ const createAndSendToken = (user, req, res, msg) => {
 exports.createUser = catchAsync(async (req, res, next) => {
     const newUser = await User.create({
         name: req.body.name,
-        userName: req.body.userName,
         email: req.body.email,
         secretKey: req.body.secretKey,
         password: req.body.password,

@@ -68,7 +68,7 @@ exports.sendProductionErrors = (err, req, res, next) => {
 ///other mongo errors
 // 1. duplicate errors
 exports.handleDuplicateError = (err) => {
-    const message = `${Object.keys(err.keyValue)[0]} should be unique, Please try again!!!`
+    const message = `${Object.keys(err.keyValue)[0]} is already taken. Choose another one.`
     return new AppError(message, 400)
 }
 

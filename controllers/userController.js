@@ -5,7 +5,6 @@ const catchAsync = require('../utilities/catchAsync')
 
 
 
-
 //1. show all users
 exports.showAllUsers = catchAsync(async (req, res, next) => {
     const users = await User.find()
@@ -24,6 +23,7 @@ exports.showAllUsers = catchAsync(async (req, res, next) => {
 
 // 2. show user by id
 exports.getUserById = catchAsync(async (req, res, next) => {
+
     const user = await User.findById(req.params.id)
 
     if (!user) {

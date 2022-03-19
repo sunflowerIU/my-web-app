@@ -1,10 +1,11 @@
 const mongoose = require('mongoose')
+const slugify = require('slugify')
 
 const productSchema = new mongoose.Schema({
     name: {
         type: String,
         required: [true, 'name is required'],
-        unique: [true, 'name should be unique']
+        unique: true
     },
     summary: {
         type: String,
@@ -43,11 +44,37 @@ const productSchema = new mongoose.Schema({
     bedroom: String,
     bathroom: String,
     floors: String,
-    totalRoom: String //in each floor
+    totalRoom: String, //in each floor
+    slug:String
 
 
+}, { ///options for schema
+    toJSON: {
+        virtuals: true
+    },
+    toObject: {
+        virtuals: true
+    } ///required for virtual to show up in output)
 })
 
+
+//pre slugify middleware
+productSchema.pre('save', function (next) {
+    this.slug = slugify(this.name,{
+        replacement:'-',
+        lower:true,
+        trim:true
+    })
+
+    next()
+})
+
+
+
+
+
+
 const Product = mongoose.model('product', productSchema)
+
 
 module.exports = Product

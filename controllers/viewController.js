@@ -4,7 +4,6 @@ const catchAsync = require('../utilities/catchAsync')
 const AppError = require('../utilities/appError')
 
 
-
 //1. get main page
 exports.getMainPage = catchAsync(async(req,res,next)=>{
     const queryObj = {
@@ -48,3 +47,30 @@ exports.getMainPage = catchAsync(async(req,res,next)=>{
 }
 
 )
+
+
+//2. get product
+exports.getProduct = catchAsync(async(req,res,next)=>{
+    const product = await Product.findOne({slug:req.params.slug})
+   
+    res.status(200).render('product',{
+        title:'Property',
+        product
+    })
+})
+
+
+//3. contact us 
+exports.contactUs = (req,res,next)=>{
+    res.status(200).render('contact',{
+        title:'Contact us'
+    })
+}
+
+
+//4. signup 
+exports.auth = (req,res,next)=>{
+    res.status(200).render('authentication',{
+        title: req.cookies.goToPage
+    })
+}

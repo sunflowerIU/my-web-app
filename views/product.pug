@@ -1,78 +1,88 @@
-html
-    head
-    body
-        main
-            .card-wrapper
-                .card-product
-                    // card left
-                    .product-imgs
-                        .img-display
-                            .img-showcase
-                                img(src='images/2.jpg', alt='shoe image')
-                                img(src='images/3.png', alt='shoe image')
-                                img(src='images/4.jpg', alt='shoe image')
-                                img(src='images/1.jpg', alt='shoe image')
-                        .img-select
-                            .img-item
-                                a(href='#', data-id='1')
-                                    img(src='images/2.jpg', alt='shoe image')
-                            .img-item
-                                a(href='#', data-id='2')
-                                    img(src='images/3.png', alt='shoe image')
-                            .img-item
-                                a(href='#', data-id='3')
-                                    img(src='images/4.jpg', alt='shoe image')
-                            .img-item
-                                a(href='#', data-id='4')
-                                    img(src='images/1.jpg', alt='shoe image')
-                    // card right
-                    .product-content
-                        h2.product-title Land for sale at hetauda-5
-                        .product-detail
-                            h2 about this item: 
-                            p
-                                | Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo eveniet veniam tempora fuga tenetur placeat sapiente architecto illum soluta consequuntur, aspernatur quidem at sequi ipsa!
-                            p
-                                | Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, perferendis eius. Dignissimos, labore suscipit. Unde.
-                            ul
-                                li
-                                    i.fa-solid.fa-landmark
-                                    |  Land area: 
-                                    span 10 dhur
-                                li
-                                    i.fa-solid.fa-road
-                                    |  Road width: 
-                                    span 3.5m
-                                // if type is buiding
+
+extends base
+
+block append scripts 
+    script(src="/js/productDetails.js") 
+
+block content
+    main
+        .card-wrapper
+            .card-product
+                // card left
+                .product-imgs
+                    .img-display
+                        .img-showcase
+                            img(src=`/img/product/${product.images[0]}`, alt='')
+                            img(src=`/img/product/${product.images[1]}`, alt='')
+                            img(src=`/img/product/${product.images[2]}`, alt='')
+                            img(src=`/img/product/${product.images[3]}`, alt='')
+                    .img-select
+                        .img-item
+                            a(href='#', data-id='1')
+                                img(src=`/img/product/${product.images[0]}`, alt='')
+                        .img-item
+                            a(href='#', data-id='2')
+                                img(src=`/img/product/${product.images[1]}`, alt='')
+                        .img-item
+                            a(href='#', data-id='3')
+                                img(src=`/img/product/${product.images[2]}`, alt='')
+                        .img-item
+                            a(href='#', data-id='4')
+                                img(src=`/img/product/${product.images[3]}`, alt='')
+                // card right
+                .product-content
+                    h2.product-title=product.name
+                    .product-detail
+                        h2 about this property: 
+                        p=product.description
+                            
+                       
+                        ul
+                            li
+                                i.fa-solid.fa-landmark
+                                |  Land area: 
+                                span=`${product.landArea} dhur`
+                            
+                            li
+                                i.fa-solid.fa-location-pin
+                                |  Location: 
+                                span=`${product.location}`
+                            li
+                                i.fa-solid.fa-road
+                                |  Road width: 
+                                span=`${product.roadWidth}m`
+                                //- if type is house
+                            if product.type==='house'
+
                                 li
                                     i.fa-solid.fa-house
                                     |  Plinth area: 
-                                    span 500 sq ft
+                                    span=`${product.plinthArea} sq ft`
                                 li
                                     i.fa-solid.fa-building
                                     |  Floor: 
-                                    span 1 storey
+                                    span=`${product.floors} storey`
                                 li
                                     i.fa-solid.fa-bed
                                     |  Bedroom: 
-                                    span 3
+                                    span=`${product.bedroom}`
                                 li
                                     i.fa-solid.fa-shower
                                     |  Bathroom: 
-                                    span 1
+                                    span=`${product.bathroom}`
                                 li
                                     i.fa-solid.fa-equals
                                     |  Total rooms: 
-                                    span 5
-                        .social-links
-                            p Share At: 
-                            a(href='#')
-                                i.fab.fa-facebook-f
-                            a(href='#')
-                                i.fab.fa-twitter
-                            a(href='#')
-                                i.fab.fa-instagram
-                            a(href='#')
-                                i.fab.fa-whatsapp
-                            a(href='#')
-                                i.fab.fa-pinterest
+                                    span=`${product.totalRoom}`
+                    .social-links
+                        p Share At: 
+                        a(href='#')
+                            i.fab.fa-facebook-f
+                        a(href='#')
+                            i.fab.fa-twitter
+                        a(href='#')
+                            i.fab.fa-instagram
+                        a(href='#')
+                            i.fab.fa-whatsapp
+                        a(href='#')
+                            i.fab.fa-pinterest

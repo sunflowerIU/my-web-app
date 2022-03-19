@@ -12,7 +12,7 @@ mongoose.connect(db,{
 //for checking the error for mongodb
 const dbConnection = mongoose.connection
 dbConnection.on('error',()=>{
-    console.log(`Failed to connect database ${error.message}`)
+  console.log('Database error')
 })
 dbConnection.on('open',()=>{
     console.log(`Database connected successfully`)
