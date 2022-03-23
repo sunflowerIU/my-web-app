@@ -2,7 +2,7 @@
   "name": "real-estate",
   "version": "1.0.0",
   "description": "Real estate mini business application",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
     "start:dev": "nodemon server.js",
     "start:prod": "NODE_ENV=production nodemon server.js",
