@@ -11,25 +11,25 @@ header
                         ul.navbar-nav.justify-content-end
                             li.nav-item
                                 a.nav-link(href='/contact-us') Contact us
-                            // if you dont have account
-                            //- li.nav-item
-                            //-     a.nav-link(href='#') Details
-                            li.nav-item
-                                button.btn.btn-outline-primary.loginBtn(type='button') Login
-                            li.nav-item
-                                button.btn.btn-primary.signupBtn(type='button') Sign up
-                            // if you have account
-                            //
-                                <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Username
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="#">profile</a></li>
-                                <li><a class="dropdown-item" href="#">Log out</a></li>
-                                </ul>
-                                </li>
+                                // if you have account
+                            if user
+                                li.nav-item
+                                    a.nav-link(href='/create-property') Create Property
+                                li.nav-item.dropdown
+                                    a#navbarDropdownMenuLink.nav-link.dropdown-toggle(href='#', role='button', data-bs-toggle='dropdown', aria-expanded='false') Username
+                                    ul.dropdown-menu(aria-labelledby='navbarDropdownMenuLink')
+                                        li
+                                            a.dropdown-item(href='/my-account') profile
+                                        li
+                                            a.dropdown-item.logout-btn(href='') Log out
+                                // if you dont have account
+                            else
+                                li.nav-item
+                                    button.btn.btn-outline-primary.loginBtn(type='button') Login
+                                li.nav-item
+                                    button.btn.btn-primary.signupBtn(type='button') Sign up
+
+                            //- +checkUser(user)
     else
         nav.navbar.navbar-expand-md.navbar-dark.fixed-top.bg-dark
             .container-fluid
@@ -40,22 +40,23 @@ header
                     ul.navbar-nav.justify-content-end
                         li.nav-item
                             a.nav-link(href='/contact-us') Contact us
-                        // if you dont have account
-                        //- li.nav-item
-                        //-     a.nav-link(href='#') Details
-                        li.nav-item
-                            button.btn.btn-outline-primary.loginBtn(type='button') Login
-                        li.nav-item
-                            button.btn.btn-primary.signupBtn(type='button') Sign up
-                        // if you have account
-                        //
-                            <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Username
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="#">profile</a></li>
-                            <li><a class="dropdown-item" href="#">Log out</a></li>
-                            </ul>
-                            </li>
+                                // if you have account
+                            if user
+                                li.nav-item
+                                    a.nav-link(href='/create-property') Create Property
+                                li.nav-item.dropdown
+                                    a#navbarDropdownMenuLink.nav-link.dropdown-toggle(href='#', role='button', data-bs-toggle='dropdown', aria-expanded='false') Username
+                                    ul.dropdown-menu(aria-labelledby='navbarDropdownMenuLink')
+                                        li
+                                            a.dropdown-item(href='/my-account') profile
+                                        li
+                                            a.dropdown-item.logout-btn(href='#') Log out
+                                // if you dont have account
+                            else
+                                li.nav-item
+                                    button.btn.btn-outline-primary.loginBtn(type='button') Login
+                                li.nav-item
+                                    button.btn.btn-primary.signupBtn(type='button') Sign up
+
+
+

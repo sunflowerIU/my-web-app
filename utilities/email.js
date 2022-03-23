@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer')
+const pug = require('pug')
 
 
 
@@ -39,8 +40,16 @@ module.exports =  class Email {
     }
 
     //2. send email
-    async sendEmail(subject,html,) {
+    async sendEmail(subject,template) {
         // send mail with defined transport object
+        const html = pug.renderFile(`${__dirname}/../views/email/${template}.pug`,{
+            name:this.user.name,
+            url:this.url,
+            subject,
+            senderName:this.senderName || '',
+            contactedFrom:this.from || '',
+            message:this.message || ''
+        })
         let options = {
             from: this.from, // sender address
             to: this.to, // list of receivers
@@ -55,32 +64,22 @@ module.exports =  class Email {
 
     //3. send welcome email
     async welcomeEmail(){
-        let subject = `Welcome ${this.user.userName}`
-        const html = `<h1>${subject}</h1>
-        <b>Welcome ${this.user.userName}. Thanks for joining, feel free to email us if you need any help.💖❤💖</b>`
-        // const text = `Welcome ${this.user.userName}. Thanks for joining, feel free to email us if you need any help.💖❤💖`
-        await this.sendEmail(subject,html)
+        let subject = `Welcome ${this.user.name}`
+        await this.sendEmail(subject,'welcome')
     }
 
 
     //4. send pasword reset email
     async sendPasswordResetEmail(){
         let subject = 'Password reset'
-        const html = `<h1>${subject}</h1>
-        <b>Please click on the link to change your password, if not then ignore this. <link>${this.url}</link></b> `
-        await this.sendEmail(subject,html)
+        await this.sendEmail(subject,'passwordReset')
     }
 
 
     //5. send contact email
     async contactEmail(){
-        console.log(this.subject,this.from, this.senderName,this.to)
         const subject = this.subject
-        const html = `<h1>${subject}</h1>
-        <b>Message from ${this.senderName} from email: ${this.from}</b> 
-        <p>Message: ${this.message}</p>`
-        // const message = `Message from ${this.senderName}, message: ${this.message}`
-        await this.sendEmail(subject,html)
+        await this.sendEmail(subject,'contact')
         
     }
 

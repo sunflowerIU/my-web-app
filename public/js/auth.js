@@ -92,8 +92,11 @@ signinForm.addEventListener('submit',async function(e){
 
         if(res.status === 200){
             showAlert('success','Login successful.')
+            window.location.href = '/'
         }
     }catch(err){
         showAlert('error',err.response.data.message)
     }
 })
+
+

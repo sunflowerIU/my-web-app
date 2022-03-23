@@ -166,12 +166,12 @@ exports.updateMyPassword = catchAsync(async (req, res, next) => {
     user.passwordConfirm = req.body.newPassword
     await user.save()
 
+    // createAndSendToken(user, req, res, 'Password updated')
     res.status(200).json({
         status: 'success',
         message: 'password updated',
         user
     })
-    // createAndSendToken(user, req, res, 'Password updated')
 })
 
 
@@ -194,7 +194,14 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
     })
     try {
         //4. send email with reset url 
-        const resetUrl = `${req.protocol}://${req.get('host')}/api/user/reset-password/${resetToken}`
+        let resetUrl; 
+        if(process.env.NODE_ENV==='development'){
+            resetUrl= `${req.protocol}://${req.get('host')}/api/user/reset-password/${resetToken}`
+
+        }else{
+            resetUrl= `${req.protocol}://${req.get('host')}/reset-password/${resetToken}`
+        }
+        // resetUrl= `${req.protocol}://${req.get('host')}/reset-password/${resetToken}`
 
         await new Email(user, resetUrl).sendPasswordResetEmail()
 
@@ -266,4 +273,43 @@ exports.deleteMyAccount = catchAsync(async (req, res, next) => {
         message:'Your account has been deleted successfully'
     })
 
+})
+
+
+//9 is logged in function that will help us to know if user is logged in or not in frontend
+exports.isLoggedIn = catchAsync(async(req,res,next)=>{
+
+    const token = req.cookies.jwt //since we kept token name to jwt when signup or login
+    //if no token then send error
+    if (!token) {
+        return next()
+    }
+
+    ///now veryfy that token if that token is not tampered and verify user
+    //1. first decode that token using secret key
+    const payload = promisify(jwt.verify) //promisify is used to replace the callback functions
+    const decoded = await payload(token, process.env.JWT_SECRET, )
+    // console.log(decoded)
+
+    //2. verify user, if that user is still available or not
+    const user = await User.findById(decoded.id)
+    if (!user) {
+        return next()
+    }
+
+    //3. if user has changed password after being logged in then send error with pass has been changed please login in again
+    if (user.passwordChangedAt) {
+        const passwordChangedAt = parseInt((user.passwordChangedAt.getTime() / 1000), 10)
+
+        if (passwordChangedAt > decoded.iat) {
+            return next()
+        }
+    }
+
+    //4. if user is available then set user as currrent user
+    req.user = user
+    res.locals.user = user //for template engine
+
+
+    return next()
 })

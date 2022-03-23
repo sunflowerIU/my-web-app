@@ -45,16 +45,16 @@ exports.sendProductionErrors = (err, req, res, next) => {
     }
     // b. for rendered website
     if (err.isOperational) {
-        return res.status(err.statusCode).render({
-            status: `Error`,
-            message: err.message,
-            title: `something went wrong!!!😐`
+        return res.status(err.statusCode).render('error',{
+            title:"page not found",
+            statusCode :err.status,
+            message:err.message
         })
     } else { //for programming error
-        return res.status(500).json({
-            status: 'Error',
-            message: err.message,
-            title: `something went wrong!!!😐`
+        return res.status(500).render('error',{
+            title:'OOPS, Something went wrong!!!',
+            statusCode :500,
+            message:'Please TRY AGAIN!!!'
         })
     }
 
@@ -90,4 +90,10 @@ exports.handleValidationError = (err)=>{
 exports.handleJwtError = (err)=>{
     const message = `JWT malformed, please login again!!`;
     return new AppError(message,400)
+}
+
+
+//5. you are not logged in error
+exports.notLoggedIn = (err)=>{
+    
 }

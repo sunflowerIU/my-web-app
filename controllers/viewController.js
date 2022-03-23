@@ -17,9 +17,13 @@ exports.getMainPage = catchAsync(async(req,res,next)=>{
     });
 
     //1. get query from url and find alc to them
-    let query = Product.find(req.query)
+    let query = Product.find(queryObj)
 
-    //2. pagination
+    //2. sort
+    query = query.sort('-createdAt')
+
+    
+    //3. pagination
     const limit = +req.query.limit || 6
     const page = +req.query.page || 1;
     const skip = (page - 1 )* limit;
@@ -55,7 +59,8 @@ exports.getProduct = catchAsync(async(req,res,next)=>{
    
     res.status(200).render('product',{
         title:'Property',
-        product
+        product,
+        user:req.user
     })
 })
 
@@ -72,5 +77,38 @@ exports.contactUs = (req,res,next)=>{
 exports.auth = (req,res,next)=>{
     res.status(200).render('authentication',{
         title: req.cookies.goToPage
+    })
+}
+
+
+//5. create new property page
+exports.createProperty = (req,res,next)=>{
+    res.status(200).render('createProduct',{
+        title:'create-property'
+    })
+}
+
+
+//6. account page
+exports.account = (req,res,next)=>{
+    res.status(200).render('account',{
+        title:'My-Account',
+        user:req.user
+    })
+}
+
+
+//7. forgot password
+exports.forgotPassword = (req,res,next)=>{
+    res.status(200).render('forgotPassword',{
+        title:'Forgot password'
+    })
+}
+
+
+//8. reset password
+exports.resetPassword = (req,res,next)=>{
+    res.status(200).render('resetPassword',{
+        title:'Reset Password'
     })
 }

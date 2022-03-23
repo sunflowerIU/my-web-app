@@ -2,7 +2,6 @@ extends base
 
 
 block append scripts 
-  script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")
   script(src="/js/auth.js") 
 
 
@@ -24,7 +23,7 @@ block content
           span or use your account
           input(type='email', placeholder='Email',id='login-email')
           input(type='password', placeholder='Password',id='login-password')
-          a.link-color(href='#') Forgot your password?
+          a.link-color.forgot-password(href='/forgot-password') Forgot your password?
           button.btn.btn-dark Sign In
       .overlay-container
         .overlay

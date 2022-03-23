@@ -38,3 +38,26 @@ if (loginBtn) {
         document.cookie = 'goToPage=login'
     })
 }
+
+//4. logout user
+const logoutBtn = document.querySelector('.logout-btn')
+
+if (logoutBtn) {
+    logoutBtn.addEventListener('click', async function (e) {
+        e.preventDefault()
+        try {
+            const res = await axios({
+                withCredentials: true,
+                method: 'POST',
+                url: '/api/user/logout'
+            })
+
+            if(res.status === 200){
+                showAlert('success','Logged out successfully.')
+                window.location.href = '/'
+            }
+        } catch (err) {
+            showAlert('error', err.response.data.message)
+        }
+    })
+}

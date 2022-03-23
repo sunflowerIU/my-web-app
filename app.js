@@ -9,6 +9,8 @@ const mongoSanitize = require('express-mongo-sanitize')
 const rateLimit = require('express-rate-limit')
 const xss = require('xss-clean')
 const path = require('path')
+const cors = require('cors')
+const compression = require('compression')
 
 
 //importing routes
@@ -26,6 +28,9 @@ app.set('views', path.join('views'))
 //to parse body from request
 app.use(express.json({
     limit: '10kb' //express will throw error if there is more than 10kb in body
+}))
+app.use(express.urlencoded({
+    extended:true
 }))
 app.use(morgan('dev'))
 app.use(cookieParser()) //this will send cookie to server on every request
@@ -53,7 +58,33 @@ app.use('/api', limiter) //now it will work for every url starts with api
 
 //use xss to prevent cross site scripting
 app.use(xss())
+app.disable('x-powered-by'); //remove x-powered-by-express
+app.use(cors()) //apply cors
+app.use(compression())
 
+///use csp
+
+////this is code to avoid csp for mapbox
+const CSP = 'Content-Security-Policy';
+const POLICY =
+  "default-src 'self' trusted-cdn.com;" +
+  "base-uri 'self';block-all-mixed-content;" +
+  "font-src 'self' https: data:;" +
+  "frame-ancestors 'self';" +
+  "connect-src 'self' http://127.0.0.1:1999 https: https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js;" +
+  "img-src http://127.0.0.1:1999 'self' blob: data:;" +
+  "object-src 'none';" +
+  "script-src https: cdn.jsdelivr.net cdnjs.cloudflare.com trused-cdn.com 'self' blob: ;" +
+  "script-src-attr 'none';" +
+  "style-src 'self' https: 'unsafe-inline';" +
+  'upgrade-insecure-requests;';
+
+
+
+app.use((req, res, next) => {
+  res.setHeader(CSP, POLICY)
+  next();
+});
 
 
 
@@ -114,6 +145,9 @@ app.use((err, req, res, next) => {
         if (err.message === 'jwt malformed') {
             error = errorController.handleJwtError(error)
         }
+
+
+        
 
         errorController.sendProductionErrors(error, req, res, next)
 

@@ -1,42 +1,63 @@
-html
-  head
-  body
-    main.box
-      .container.create-product
-        .col-lg-8.col-lg-offset-2.col-md-8.col-md-offset-2.col-sm-12.col-xs-12.edit_information
-          form(action='', method='POST')
-            h3.text-center Create a new Property
+
+extends base
+
+block append scripts  
+  script(src="/js/createProperty.js") 
+
+
+block content
+  main.box
+    .container.create-product
+      .col-lg-8.col-lg-offset-2.col-md-8.col-md-offset-2.col-sm-12.col-xs-12.edit_information
+        form.create-property(action='#', method='POST')
+          h3.text-center Create a new Property
+          .row
+            .col-lg-12.col-md-12.col-sm-12.col-xs-12
+              .form-group
+                label.profile_details_text Name:
+                input.form-control.property-name(type='text', name='property-name', value='', required)
+            .col-lg-12.col-md-12.col-sm-12.col-xs-12
+              .form-group
+                label.profile_details_text Description: 
+                input.form-control.property-description(type='text', name='Property-description', value='', required)
+              .form-group
+                label.profile_details_text Summary: 
+                input.form-control.property-summary(type='text', name='Property-summary', value='', required)
+          .row
+            .col-lg-12.col-md-12.col-sm-12.col-xs-12
+              .form-group
+                label.profile_details_text Cover Image:
+                input#cover-image-upload.hidden.property-cover-image(type='file', onchange='',accept='image/*',name='cover-image',required)
+          .row
+            .col-lg-12.col-md-12.col-sm-12.col-xs-12
+              .form-group
+                label.profile_details_text Images:
+                input#images-upload.hidden.property-images(type='file', onchange='', multiple,accept='image/*',name='images',required)
+          .row
+            .col-lg-12.col-md-12.col-sm-12.col-xs-12
+              .form-group
+                label.profile_details_text Location:
+                input.form-control.property-location(type='text', name='location', value='', required)
+          .row
+            .col-lg-12.col-md-12.col-sm-12.col-xs-12
+              .form-group
+                label.profile_details_text Land Area:
+                input.form-control.property-land-area(type='text', name='land-area', value='', required)
+          .row
+            .col-lg-12.col-md-12.col-sm-12.col-xs-12
+              .form-group
+                label.profile_details_text Road width:
+                input.form-control.property-road-width(type='text', name='Road-width', value='', required)
+          .row.type-div
+            .col-lg-12.col-md-12.col-sm-12.col-xs-12
+              .form-group
+                label.profile_details_text Type:
+                select.form-select.form-select-sm.select-type(aria-label='.form-select-sm example', onchange='showOtherForm()')
+                  option(selected,value='land') land
+                  option(value='house') house
+          .other
             .row
-              .col-lg-12.col-md-12.col-sm-12.col-xs-12
+              .col-lg-12.col-md-12.col-sm-12.col-xs-12.submit
                 .form-group
-                  label.profile_details_text Name:
-                  input.form-control(type='text', name='property-name', value='', required='')
-              .col-lg-12.col-md-12.col-sm-12.col-xs-12
-                .form-group
-                  label.profile_details_text Description: 
-                  input.form-control(type='text', name='Property-description', value='', required='')
-            .row
-              .col-lg-12.col-md-12.col-sm-12.col-xs-12
-                .form-group
-                  label.profile_details_text Cover Image:
-                  input#cover-image-upload.hidden(type='file', onchange='')
-            .row
-              .col-lg-12.col-md-12.col-sm-12.col-xs-12
-                .form-group
-                  label.profile_details_text Images:
-                  input#images-upload.hidden(type='file', onchange='', multiple='')
-            .row
-              .col-lg-12.col-md-12.col-sm-12.col-xs-12
-                .form-group
-                  label.profile_details_text Location:
-                  input.form-control(type='text', name='location', value='', required='')
-            .row.type-div
-              .col-lg-12.col-md-12.col-sm-12.col-xs-12
-                .form-group
-                  label.profile_details_text Type:
-                  select.form-select.form-select-sm.select-type(aria-label='.form-select-sm example', onchange='showOtherForm()')
-                    option(selected='') Open this select menu
-                    option(value='house') house
-                    option(value='land') land
-            .other
-           
+                  input.btn.btn-success(type='submit', value='Submit')
+          

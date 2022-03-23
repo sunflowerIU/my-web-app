@@ -13,36 +13,36 @@ block content
                     .img-display
                         .img-showcase
                             img(src=`/img/product/${product.images[0]}`, alt='')
-                            img(src=`/img/product/${product.images[1]}`, alt='')
-                            img(src=`/img/product/${product.images[2]}`, alt='')
-                            img(src=`/img/product/${product.images[3]}`, alt='')
+                            img(src=`/img/product/${product.images[1] ? product.images[1] :'blank.jpeg'}`, alt='')
+                            img(src=`/img/product/${product.images[2] ? product.images[2] :'blank.jpeg'}`, alt='')
+                            img(src=`/img/product/${product.images[3] ? product.images[3] : 'blank.jpeg' }`, alt='')
                     .img-select
                         .img-item
                             a(href='#', data-id='1')
                                 img(src=`/img/product/${product.images[0]}`, alt='')
                         .img-item
                             a(href='#', data-id='2')
-                                img(src=`/img/product/${product.images[1]}`, alt='')
+                                img(src=`/img/product/${product.images[1] ? product.images[1] :'blank.jpeg'}`, alt='')
                         .img-item
                             a(href='#', data-id='3')
-                                img(src=`/img/product/${product.images[2]}`, alt='')
+                                img(src=`/img/product/${product.images[2] ? product.images[2] :'blank.jpeg'}`, alt='')
                         .img-item
                             a(href='#', data-id='4')
-                                img(src=`/img/product/${product.images[3]}`, alt='')
+                                img(src=`/img/product/${product.images[3] ? product.images[3] : 'blank.jpeg'}`, alt='')
                 // card right
                 .product-content
                     h2.product-title=product.name
                     .product-detail
                         h2 about this property: 
                         p=product.description
-                            
-                       
+
+
                         ul
                             li
                                 i.fa-solid.fa-landmark
                                 |  Land area: 
                                 span=`${product.landArea} dhur`
-                            
+
                             li
                                 i.fa-solid.fa-location-pin
                                 |  Location: 
@@ -76,13 +76,29 @@ block content
                                     span=`${product.totalRoom}`
                     .social-links
                         p Share At: 
-                        a(href='#')
+                        a(href='#',class='facebook-btn')
                             i.fab.fa-facebook-f
-                        a(href='#')
+                        a(href='#',class='twitter-btn')
                             i.fab.fa-twitter
-                        a(href='#')
-                            i.fab.fa-instagram
-                        a(href='#')
+                        //- a(href='#',class='instagram-btn')
+                        //-     i.fab.fa-instagram
+                        a(href='#',class='whatsapp-btn')
                             i.fab.fa-whatsapp
-                        a(href='#')
+                        a(href='#',class='pinterest-btn')
                             i.fab.fa-pinterest
+                    if user
+                        button.btn.btn-dark(type='button', data-bs-toggle='modal', data-bs-target='#myModal') Delete
+                        // The Modal
+                        #myModal.modal
+                            .modal-dialog.modal-dialog-centered
+                                .modal-content
+                                    // Modal Header
+                                    .modal-header
+                                        h4.modal-title Delete this property
+                                        button.btn-close(type='button', data-bs-dismiss='modal')
+                                    // Modal body
+                                    .modal-body Are you sure you want to delete this property? click yes to proceed.
+                                    // Modal footer
+                                    .modal-footer
+                                        button.btn.btn-dark(type='button', data-bs-dismiss='modal') Close
+                                        button.btn.btn-danger.delete-property-btn(type='button') Yes
