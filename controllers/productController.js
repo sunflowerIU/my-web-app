@@ -220,4 +220,3 @@ exports.deleteProductBySlug = catchAsync(async (req, res, next) => {
     })
 })
 
-console.log('a')
