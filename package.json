@@ -4,7 +4,7 @@
   "description": "Real estate mini business application",
   "main": "app.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "nodemon server.js",
     "start:dev": "nodemon server.js",
     "start:prod": "NODE_ENV=production nodemon server.js",
     "debug": "ndb server.js"
@@ -34,6 +34,6 @@
     "xss-clean": "^0.1.1"
   },
   "engines": {
-    "node": "^14"
+    "node": ">=14"
   }
 }
