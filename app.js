@@ -1,6 +1,5 @@
 const express = require('express')
 const app = express()
-const dotenv = require('dotenv')
 const AppError = require('./utilities/appError')
 const errorController = require('./controllers/errorController')
 const morgan = require('morgan')
@@ -35,10 +34,7 @@ app.use(express.urlencoded({
 app.use(morgan('dev'))
 app.use(cookieParser()) //this will send cookie to server on every request
 
-//config dotenv
-dotenv.config({
-    path: './config.env'
-})
+
 
 
 

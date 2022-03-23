@@ -1,7 +1,12 @@
-const app = require('./app')
 const mongoose = require('mongoose')
+const dotenv = require('dotenv')
+//config dotenv
+dotenv.config({
+    path: './config.env'
+})
 
 
+const app = require('./app')
 //connect to mongodb
 const db = process.env.MONGODB_CONNECTION.replace('<password>',process.env.MONGODB_PASSWORD)
 mongoose.connect(db,{
