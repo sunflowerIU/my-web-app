@@ -37,6 +37,7 @@ if(deleteBtn){
             if(res.status === 200){
                 showAlert('success','Deleted successfully')
                 setTimeout(window.location.assign('/'),3000)
+
             }
         }catch(err){
             showAlert('error',res.response.data.message)

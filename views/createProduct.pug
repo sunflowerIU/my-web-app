@@ -2,7 +2,7 @@
 extends base
 
 block append scripts  
-  script(src="/js/createProperty.js") 
+  script( src="/js/createProperty.js" ) 
 
 
 block content
@@ -27,12 +27,12 @@ block content
             .col-lg-12.col-md-12.col-sm-12.col-xs-12
               .form-group
                 label.profile_details_text Cover Image:
-                input#cover-image-upload.hidden.property-cover-image(type='file', onchange='',accept='image/*',name='cover-image',required)
+                input#cover-image-upload.hidden.property-cover-image(type='file' ,accept='image/*',name='cover-image',required)
           .row
             .col-lg-12.col-md-12.col-sm-12.col-xs-12
               .form-group
                 label.profile_details_text Images:
-                input#images-upload.hidden.property-images(type='file', onchange='', multiple,accept='image/*',name='images',required)
+                input#images-upload.hidden.property-images(type='file', multiple,accept='image/*',name='images',required)
           .row
             .col-lg-12.col-md-12.col-sm-12.col-xs-12
               .form-group
@@ -52,7 +52,7 @@ block content
             .col-lg-12.col-md-12.col-sm-12.col-xs-12
               .form-group
                 label.profile_details_text Type:
-                select.form-select.form-select-sm.select-type(aria-label='.form-select-sm example', onchange='showOtherForm()')
+                select.form-select.form-select-sm.select-type(aria-label='.form-select-sm example')
                   option(selected,value='land') land
                   option(value='house') house
           .other

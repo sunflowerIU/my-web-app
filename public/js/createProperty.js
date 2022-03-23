@@ -1,3 +1,10 @@
+const formSelect = document.querySelector('.form-select')
+
+formSelect.addEventListener('change',function(){
+  showOtherForm()
+})
+
+
 // to show other forms according to type
 function showOtherForm() {
   const select = document.querySelector('.select-type')

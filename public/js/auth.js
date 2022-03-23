@@ -58,7 +58,16 @@ signupForm.addEventListener('submit', async function (e) {
         //show success message
         if (res.status === 200) {
             showAlert('success', 'Signup succeed. Please login to continue.')
+            //set every value to ''
+            document.querySelector('#signup-name').value = ''
+            document.querySelector('#signup-email').value = ''
+            document.querySelector('#signup-password').value = ''
+            document.querySelector('#signup-password-confirm').value = ''
+            document.querySelector('#signup-secret-key').value = ''
+
+            
             container.classList.remove('right-panel-active');
+
         }
 
     } catch (err) {

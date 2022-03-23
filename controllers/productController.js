@@ -201,9 +201,21 @@ exports.deleteProductBySlug = catchAsync(async (req, res, next) => {
         return next(new AppError('Product not found😫😪', 404))
     }
 
-
+    
     res.status(200).json({
         status: 'success,Following product has been deleted',
         product
+    })
+    
+    
+    //then delete photos of that property
+     fs.unlink(`${__dirname}/../public/img/product/${product.imageCover}`,()=>{
+         console.log('imagecover deleted')
+     })
+    
+    product.images.forEach( el=>{
+         fs.unlink(`${__dirname}/../public/img/product/${el}`,()=>{
+             console.log('images deleted')
+         })
     })
 })
