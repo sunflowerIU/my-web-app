@@ -1,5 +1,4 @@
 const catchAsync = require('../utilities/catchAsync')
-const AppError = require('../utilities/appError')
 const Email = require('../utilities/email')
 
 
@@ -8,7 +7,7 @@ const Email = require('../utilities/email')
 exports.contactController = catchAsync(async(req,res,next)=>{
     //1. first get all information from client side(name, email,message)
     const {name,email,subject,message} = req.body;
-    console.log(name,email,subject,message)
+    // console.log(name,email,subject,message)
     
     await new Email('','',email,'amittamang421@gmail.com',subject,message,name).contactEmail()
 
