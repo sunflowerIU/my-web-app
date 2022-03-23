@@ -19,11 +19,21 @@ const createAndSendToken = (user, req, res, msg) => {
         expiresIn: process.env.JWT_EXPIRES_IN
     })
 
+const cookieOptions = {
+    maxAge: 2 * 24 * 60 * 60 * 1000,
+    httpOnly: true,
+}
+
+    //set cookieOptions.secure to true if our page is really secure(which means https), so for heroku app to check
+    // wether our page is https or not we can do it by req.headers['x-forwarded-proto'] === 'https'
+    // req.secure is for any other except heroku
+    if (req.secure || req.headers['x-forwarded-proto'] === 'https') cookieOptions.secure = true; 
+
+
     //set token to cookie
-    res.cookie('jwt', token, {
-        maxAge: 2 * 24 * 60 * 60 * 1000,
-        httpOnly: true
-    })
+    res.cookie('jwt', token, cookieOptions)
+
+
 
     //now set password and secretKey to undefined to hide from results
     user.password = undefined;

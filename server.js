@@ -41,3 +41,12 @@ process.on('unhandledRejection', error => {
 
     })
 })
+
+//2. handle sigterm 
+//this happens in heroku server, because heroku will restart our app
+process.on('SIGTERM',()=>{
+    console.log('SIGTERM received, shutting down gracefully✌✌')
+    server.close(()=>{
+        console.log('Process terminated😑😐')
+    })
+})
