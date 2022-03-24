@@ -1,0 +1,41 @@
+extends base
+
+block append scripts 
+    script(src="/js/updateAccount.js") 
+
+
+block content
+    main.box
+        .container
+            form.update-data-form
+                .profile-pic
+                        img#profile-image1(src=`/img/user/${user.photo}`, alt=`Photo of ${user.name}`, height='200', width='200')
+                        input.hidden(accept='image/*',id='photo' name='photo',type='file')
+                .form-group
+                    h3.text-center Edit Personal Information
+                    label.profile_details_text(for='name') Name
+                    input.form-control.update-name(type='text', value=`${user.name}`, required)
+                .form-group
+                    label.profile_details_text(for='email') Email address
+                    input.form-control.update-email(type='email', value=`${user.email}` , required)
+                .form-group
+                button.btn.btn-dark Save settings
+
+
+            form.update-password-form(action='#', method='POST')
+                h3.text-center Update your password
+                .row
+                    .col-lg-6.col-md-6.col-sm-6.col-xs-12
+                        .form-group
+                            label.profile_details_text New password:
+                            input.form-control.new-password(type='password', name='', value='',required)
+
+                .row
+                    .col-lg-12.col-md-12.col-sm-12.col-xs-12
+                        .form-group
+                            label.profile_details_text Current password:
+                            input.form-control.current-password(type='password', name='', value='',required)
+                .row
+                    .col-lg-12.col-md-12.col-sm-12.col-xs-12.submit
+                        .form-group
+                            input.btn.btn-dark(type='submit', value='Submit')

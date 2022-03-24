@@ -1,0 +1,61 @@
+extends base
+
+block append scripts
+  script(src="/js/contactUs.js") 
+
+
+
+block content
+  main
+    .container-form
+      span.big-circle
+      img.square(src='/img/shape.png', alt='')
+      .form
+        .contact-info
+          h3.title Let&apos;s get in touch
+          p.text
+            | Please feel free to contact us.
+            | You are willing to help you.
+          .info
+            .information
+              img.icon(src='/img/location.png', alt='')
+              p Hetauda-5, shantinagar
+            .information
+              img.icon(src='/img/email.png', alt='')
+              p amittamang423@gmail.com
+            .information
+              img.icon(src='/img/phone.png', alt='')
+              p 123-456-789
+          .social-media
+            p Connect with us :
+            .social-icons
+              a(href='#')
+                i.fab.fa-facebook-f
+              a(href='#')
+                i.fab.fa-twitter
+              a(href='#')
+                i.fab.fa-instagram
+              a(href='#')
+                i.fab.fa-linkedin-in
+        .contact-form
+          span.circle.one
+          span.circle.two
+          form(action='', autocomplete='off')
+            h3.title Contact us
+            .input-container
+              input.input(type='text', id='name', name='',placeholder='Your Name')
+              label(for='')
+              span Username
+            .input-container
+              input.input(type='email', id='email', name='',placeholder='Email',autocomplete="on")
+              label(for='') 
+              span Email
+            .input-container
+              input.input(type='text', id='subject', name='',placeholder='Subject')
+              label(for='') 
+              span Subject
+            .input-container.textarea
+              textarea.input(name='',id='message', placeholder='Message')
+              label(for='') 
+              span Message
+            input.btn-contact(type='submit',id='submit', value='Send')
