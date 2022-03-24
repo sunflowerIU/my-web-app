@@ -4,7 +4,7 @@ const AppError = require('../utilities/appError')
 
 
 //1. get main page
-exports.getMainPage = catchAsync(async(req,res,next)=>{
+exports.getMainPage = catchAsync(async (req, res, next) => {
     const queryObj = {
         ...req.query
     }
@@ -16,98 +16,97 @@ exports.getMainPage = catchAsync(async(req,res,next)=>{
     });
 
     //1. get query from url and find alc to them
-    let query = Product.find(queryObj)
+    let query = Product.find(req.query)
+    query  = query.sort('-createdAt')
 
-    //2. sort
-    query = query.sort('-createdAt')
-
-    
-    //3. pagination
+    //2. pagination
     const limit = +req.query.limit || 6
     const page = +req.query.page || 1;
-    const skip = (page - 1 )* limit;
+    const skip = (page - 1) * limit;
     query = query.skip(skip).limit(limit)
 
     //count total pages that is available
-    const totalPages = Math.ceil(await Product.countDocuments()/limit)
+    const totalPages = Math.ceil(await Product.countDocuments() / limit)
     // console.log(req.query.page,totalPages)
 
     //if given page in query is more than total page than show error
-    if(+req.query.page>totalPages){
-        return next(new AppError(`There are no pages more than ${totalPages}`,404))
+    if (+req.query.page > totalPages) {
+        return next(new AppError(`There are no pages more than ${totalPages}`, 404))
     }
 
-    //then await that query
-    const products = await query.select('-__v')   
-    res.status(200).render('main',{
-        title:'Real-Estate',
-        products,
-        totalPages,
-        currentPage:page //here page will represent the current page we are at
+        //then await that query
+        const products = await query.select('-__v')
+        res.status(200).render('main', {
+            title: 'Real-Estate',
+            products,
+            totalPages,
+            currentPage: page //here page will represent the current page we are at
 
-    })
+        })
 
-}
+    }
 
 )
 
 
 //2. get product
-exports.getProduct = catchAsync(async(req,res,next)=>{
-    const product = await Product.findOne({slug:req.params.slug})
-   
-    res.status(200).render('product',{
-        title:'Property',
+exports.getProduct = catchAsync(async (req, res, next) => {
+    const product = await Product.findOne({
+        slug: req.params.slug
+    })
+
+    res.status(200).render('product', {
+        title: 'Property',
         product,
-        user:req.user
+        user: req.user
     })
 })
 
 
 //3. contact us 
-exports.contactUs = (req,res,next)=>{
-    res.status(200).render('contact',{
-        title:'Contact us'
+exports.contactUs = (req, res, next) => {
+    res.status(200).render('contact', {
+        title: 'Contact us'
     })
 }
 
 
 //4. signup 
-exports.auth = (req,res,next)=>{
-    res.status(200).render('authentication',{
+exports.auth = (req, res, next) => {
+    res.status(200).render('authentication', {
         title: req.cookies.goToPage
     })
 }
 
 
 //5. create new property page
-exports.createProperty = (req,res,next)=>{
-    res.status(200).render('createProduct',{
-        title:'create-property'
+exports.createProperty = (req, res, next) => {
+    res.status(200).render('createProduct', {
+        title: 'create-property'
     })
 }
 
 
 //6. account page
-exports.account = (req,res,next)=>{
-    res.status(200).render('account',{
-        title:'My-Account',
-        user:req.user
+exports.account = (req, res, next) => {
+    res.status(200).render('account', {
+        title: 'My-Account',
+        user: req.user
     })
 }
 
 
 //7. forgot password
-exports.forgotPassword = (req,res,next)=>{
-    res.status(200).render('forgotPassword',{
-        title:'Forgot password'
+exports.forgotPassword = (req, res, next) => {
+    res.status(200).render('forgotPassword', {
+        title: 'Forgot password'
     })
 }
 
 
 //8. reset password
-exports.resetPassword = (req,res,next)=>{
-    res.status(200).render('resetPassword',{
-        title:'Reset Password'
+exports.resetPassword = (req, res, next) => {
+    res.status(200).render('resetPassword', {
+        title: 'Reset Password'
     })
 }

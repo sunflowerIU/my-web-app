@@ -20,7 +20,7 @@ exports.getAllProducts = catchAsync(async (req, res, next) => {
 
     //1. get query from url and find alc to them
     let query = Product.find(req.query)
-
+    query  = query.sort('-createdAt')
 
     //2. pagination
     const limit = +req.query.limit || 6

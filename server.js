@@ -5,14 +5,17 @@ dotenv.config({
     path: './config.env'
 })
 
-console.log('a')
 const app = require('./app')
 //connect to mongodb
 const db = process.env.MONGODB_CONNECTION.replace('<password>',process.env.MONGODB_PASSWORD)
-mongoose.connect(db,{
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  });
+// mongoose.connect(db,{
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true
+//   });
+
+mongoose.connect(db).then(cb=>{
+    console.log('Database connected')
+})
 
 //for checking the error for mongodb
 const dbConnection = mongoose.connection
@@ -20,7 +23,7 @@ dbConnection.on('error',()=>{
   console.log('Database error')
 })
 dbConnection.on('open',()=>{
-    console.log(`Database connected successfully`)
+    console.log(`Database opened successfully`)
 })
 
 
