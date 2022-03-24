@@ -1,4 +1,4 @@
-const AppError = require('../utilities/appError')
+const AppError = require('./../utilities/appError')
 
 
 //two types of error one for development and another for production

@@ -1,6 +1,6 @@
-const User = require('../model/userModel')
-const AppError = require('../utilities/appError')
-const catchAsync = require('../utilities/catchAsync')
+const User = require('./../model/userModel')
+const AppError = require('./../utilities/appError')
+const catchAsync = require('./../utilities/catchAsync')
 const multer = require('multer') //for file upload
 const sharp = require('sharp') //for resizing image
 

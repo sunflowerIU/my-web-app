@@ -1,5 +1,5 @@
-const catchAsync = require('../utilities/catchAsync')
-const Email = require('../utilities/email')
+const catchAsync = require('./../utilities/catchAsync')
+const Email = require('./../utilities/email')
 
 
 

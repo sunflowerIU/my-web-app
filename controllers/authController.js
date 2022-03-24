@@ -1,11 +1,11 @@
-const User = require('../model/userModel')
-const catchAsync = require('../utilities/catchAsync')
+const User = require('./../model/userModel')
+const catchAsync = require('./../utilities/catchAsync')
 const jwt = require('jsonwebtoken')
-const AppError = require('../utilities/appError')
+const AppError = require('./../utilities/appError')
 const {
     promisify
 } = require('util')
-const Email = require('../utilities/email')
+const Email = require('./../utilities/email')
 const crypto = require('crypto')
 
 

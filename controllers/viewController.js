@@ -1,6 +1,6 @@
-const Product = require('../model/productModel')
-const catchAsync = require('../utilities/catchAsync')
-const AppError = require('../utilities/appError')
+const Product = require('./../model/productModel')
+const catchAsync = require('./../utilities/catchAsync')
+const AppError = require('./../utilities/appError')
 
 
 //1. get main page

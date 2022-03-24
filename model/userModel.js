@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const validator = require('validator')
-const AppError = require('../utilities/appError')
+const AppError = require('./../utilities/appError')
 const bcrypt = require('bcrypt')
 const crypto = require('crypto')
 

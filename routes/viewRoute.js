@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express()
-const viewController = require('../controllers/viewController')
-const authcontroller = require('../controllers/authcontroller')
+const viewController = require('./../controllers/viewController')
+const authcontroller = require('./../controllers/authcontroller')
 
 
 

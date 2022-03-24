@@ -1,9 +1,9 @@
-const productController = require('../controllers/productController')
-const authController = require('../controllers/authController')
+const productController = require('./../controllers/productController')
+const authController = require('./../controllers/authController')
 const express = require('express')
 const router = express()
-const upload = require('../controllers/productController').upload
-const AppError = require('../utilities/appError')
+const upload = require('./../controllers/productController').upload
+const AppError = require('./../utilities/appError')
 
 //assigning product routes
 router.get('/all-products',productController.getAllProducts)
