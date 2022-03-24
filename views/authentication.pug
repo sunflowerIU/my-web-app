@@ -1,0 +1,37 @@
+extends base
+
+
+block append scripts 
+  script(src="/js/auth.js") 
+
+
+block content
+  main.box
+    .container.signup-container(id='')
+      .form-container.sign-up-container
+        form.signupForm(action='#')
+          h1 Create Account
+          input(type='text',id='signup-name', placeholder='Name',required)
+          input(type='email',id='signup-email', placeholder='Email',autocomplete = 'true',required)
+          input(type='password',id='signup-secret-key', placeholder='Secret key',required)
+          input(type='password',id='signup-password', placeholder='Password',required)
+          input(type='password',id='signup-password-confirm', placeholder='Password confirm',required)
+          button.btn.btn-dark.signup Sign Up
+      .form-container.sign-in-container
+        form.signinForm(action='#')
+          h1 Sign in
+          span or use your account
+          input(type='email', placeholder='Email',id='login-email')
+          input(type='password', placeholder='Password',id='login-password')
+          a.link-color.forgot-password(href='/forgot-password') Forgot your password?
+          button.btn.btn-dark Sign In
+      .overlay-container
+        .overlay
+          .overlay-panel.overlay-left
+            h1 Welcome Back!
+            p To keep connected with us please login with your personal info
+            button#signIn.btn.btn-dark Sign In
+          .overlay-panel.overlay-right
+            h1 Hello, Friend!
+            p Enter your personal details and start journey with us
+            button#signUp.btn.btn-dark Sign Up
