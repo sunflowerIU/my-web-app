@@ -61,7 +61,7 @@ exports.createUser = catchAsync(async (req, res, next) => {
     })
 
     //create and send token to browser
-    createAndSendToken(newUser, req, res, 'Following user has been created.')
+    // createAndSendToken(newUser, req, res, 'Following user has been created.')
 
     //send welcome email
     await new Email(newUser).welcomeEmail()
