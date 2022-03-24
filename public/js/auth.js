@@ -28,6 +28,7 @@ signInButton.addEventListener('click', () =>
 ////to signup using api
 signupForm.addEventListener('submit', async function (e) {
     e.preventDefault()
+    document.querySelector('.signup').textContent = 'signing up...'
     const name = document.querySelector('#signup-name').value
     const email = document.querySelector('#signup-email').value
     const password = document.querySelector('#signup-password').value
@@ -48,6 +49,7 @@ signupForm.addEventListener('submit', async function (e) {
             return showAlert('error', 'Password and password confirm are not same')
         }
         //
+        console.log('aaaa')
         const res = await axios({
             withCredentials: true,
             method: 'POST',
@@ -56,6 +58,7 @@ signupForm.addEventListener('submit', async function (e) {
 
         })
         //show success message
+        console.log(res.status)
         if (res.status === 200) {
             showAlert('success', 'Signup succeed. Please login to continue.')
             //set every value to ''

@@ -66,6 +66,11 @@ exports.createUser = catchAsync(async (req, res, next) => {
     //send welcome email
     await new Email(newUser).welcomeEmail()
 
+    res.status(200).json({
+        status:'success',
+        message:'Account created successfully'
+    })
+
 })
 
 
