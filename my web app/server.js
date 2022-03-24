@@ -4,7 +4,7 @@ const dotenv = require('dotenv')
 dotenv.config({
     path: './config.env'
 })
-
+console.log('a')
 const app = require('./app')
 //connect to mongodb
 const db = process.env.MONGODB_CONNECTION.replace('<password>',process.env.MONGODB_PASSWORD)

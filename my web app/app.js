@@ -11,7 +11,7 @@ const path = require('path')
 const cors = require('cors')
 const compression = require('compression')
 
-console.log('a')
+
 //importing routes
 const productRoutes = require('./routes/productRoutes')
 const userRoutes = require('./routes/userRoutes')
